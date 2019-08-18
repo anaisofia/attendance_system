@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+// local time allow us to display the time update in the current browser time zone. The tiem relative to the user
 require("local-time").start()
 
 window.Rails = Rails
