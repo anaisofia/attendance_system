@@ -1,0 +1,44 @@
+<%= form_with(model: course_level, local: true) do |form| %>
+  <% if course_level.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(course_level.errors.count, "error") %> prohibited this course_level from being saved:</h2>
+
+      <ul>
+      <% course_level.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :code %>
+    <%= form.text_field :code, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if course_level.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', course_level, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if course_level.persisted? %>
+      <%= link_to "Cancel", course_level, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", course_levels_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

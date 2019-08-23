@@ -1,0 +1,2 @@
+class LessonStatus < ApplicationRecord
+end

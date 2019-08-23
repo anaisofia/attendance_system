@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  course_level: one
+  course_status: one
+  meetingDay: MyString
+  start_time: 2019-08-21 21:56:27
+  end_time: 2019-08-21 21:56:27
+  address: MyString
+  info: MyText
+
+two:
+  name: MyString
+  course_level: two
+  course_status: two
+  meetingDay: MyString
+  start_time: 2019-08-21 21:56:27
+  end_time: 2019-08-21 21:56:27
+  address: MyString
+  info: MyText

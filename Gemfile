@@ -5,6 +5,7 @@ ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
+gem 'cancancan'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -63,6 +64,7 @@ gem 'friendly_id', '~> 5.2', '>= 5.2.5'
 gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
 gem 'mini_magick', '~> 4.9', '>= 4.9.2'
 gem 'name_of_person', '~> 1.1'
+gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-facebook', '~> 5.0'
 gem 'omniauth-github', '~> 1.3'
 gem 'omniauth-twitter', '~> 1.4'

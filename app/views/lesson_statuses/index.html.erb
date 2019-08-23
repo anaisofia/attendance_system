@@ -1,0 +1,41 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Lesson Statuses</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_lesson_status_path, class: 'btn btn-primary' do %>
+    Add New Lesson Status
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+
+        <th>Name</th>
+
+
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @lesson_statuses.each do |lesson_status| %>
+        <%= content_tag :tr, id: dom_id(lesson_status), class: dom_class(lesson_status) do %>
+
+            <td><%= link_to lesson_status.name, lesson_status %></td>
+
+
+
+
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,16 @@
+<div class="page-header">
+  <%= link_to course_statuses_path, class: 'btn btn-default' do %>
+    All Course Statuses
+  <% end %>
+  <%= link_to edit_course_status_path(@course_status), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show Curse Status</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @course_status.name %></dd>
+  <dd><%= @course_status.description %></dd>
+
+</dl>

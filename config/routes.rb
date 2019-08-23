@@ -1,10 +1,15 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :lessons
+  resources :courses
+  resources :course_statuses
+  resources :course_levels
+  resources :lesson_statuses
   namespace :admin do
     resources :users
     resources :notifications
-    resources :services
+    # resources :services
     resources :announcements
 
     root to: "users#index"

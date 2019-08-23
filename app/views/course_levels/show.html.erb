@@ -1,0 +1,21 @@
+<div class="page-header">
+  <%= link_to course_levels_path, class: 'btn btn-default' do %>
+    All Course Levels
+  <% end %>
+  <%= link_to edit_course_level_path(@course_level), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show course level</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Code:</dt>
+  <dd><%= @course_level.code %></dd>
+
+  <dt>Name:</dt>
+  <dd><%= @course_level.name %></dd>
+
+  <dt>Description:</dt>
+  <dd><%= @course_level.description %></dd>
+
+</dl>

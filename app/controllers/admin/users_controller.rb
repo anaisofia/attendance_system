@@ -1,5 +1,12 @@
 module Admin
   class UsersController < Admin::ApplicationController
+    def create_user
+      User.create(
+        email: auth.info.email,
+        #name: auth.info.name,
+        password: Devise.friendly_token[0,20]
+      )
+    end
     # Overwrite any of the RESTful controller actions to implement custom behavior
     # For example, you may want to send an email after a foo is updated.
     #

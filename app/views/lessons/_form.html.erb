@@ -1,0 +1,64 @@
+<%= form_with(model: lesson, local: true) do |form| %>
+  <% if lesson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+      <ul>
+      <% lesson.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :date %>
+    <%= form.date_select :date, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :subject %>
+    <%= form.text_field :subject, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Teacher" %>
+    <%= form.collection_select :user_id, User.all, :id, :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Student" %>
+    <%= form.collection_select :user_id, User.all, :id, :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :course_id %>
+    <%= form.collection_select :course_id, Course.all, :id, :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :lesson_status_id %>
+    <%= form.collection_select :lesson_status_id, LessonStatus.all, :id, :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if lesson.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', lesson, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if lesson.persisted? %>
+      <%= link_to "Cancel", lesson, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", lessons_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

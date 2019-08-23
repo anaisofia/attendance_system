@@ -1,0 +1,15 @@
+<div class="page-header">
+  <%= link_to lesson_statuses_path, class: 'btn btn-default' do %>
+    All Lesson Statuses
+  <% end %>
+  <%= link_to edit_lesson_status_path(@lesson_status), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show lesson Status</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @lesson_status.name %></dd>
+
+</dl>

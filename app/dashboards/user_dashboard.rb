@@ -21,6 +21,7 @@ class UserDashboard < Administrate::BaseDashboard
     last_name: Field::String,
     announcements_last_read_at: Field::DateTime,
     admin: Field::Boolean,
+    role: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -32,7 +33,7 @@ class UserDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :notifications,
-    :services,
+    :role,
     :id,
     :email,
   ].freeze
@@ -52,6 +53,7 @@ class UserDashboard < Administrate::BaseDashboard
     :last_name,
     :announcements_last_read_at,
     :admin,
+    :role,
     :created_at,
     :updated_at,
   ].freeze
@@ -60,18 +62,19 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :password,
-    :notifications,
-    :services,
+    # :notifications,
+    # :services,
     :email,
-    :encrypted_password,
-    :reset_password_token,
-    :reset_password_sent_at,
-    :remember_created_at,
+    :password,
+    # :encrypted_password,
+    # :reset_password_token,
+    # :reset_password_sent_at,
+    # :remember_created_at,
     :first_name,
     :last_name,
-    :announcements_last_read_at,
-    :admin,
+    # :announcements_last_read_at,
+    # :admin,
+    :role,
   ].freeze
 
   # Overwrite this method to customize how users are displayed

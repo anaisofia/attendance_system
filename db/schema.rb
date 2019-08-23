@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_17_203726) do
+ActiveRecord::Schema.define(version: 2019_08_23_010503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,36 @@ ActiveRecord::Schema.define(version: 2019_08_17_203726) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "course_levels", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "course_statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "description"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.bigint "course_level_id", null: false
+    t.bigint "course_status_id", null: false
+    t.string "meetingDay"
+    t.time "start_time"
+    t.time "end_time"
+    t.string "address"
+    t.text "info"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_level_id"], name: "index_courses_on_course_level_id"
+    t.index ["course_status_id"], name: "index_courses_on_course_status_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -54,6 +84,26 @@ ActiveRecord::Schema.define(version: 2019_08_17_203726) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "lesson_statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.date "date"
+    t.string "subject"
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.bigint "course_id", null: false
+    t.bigint "lesson_status_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_lessons_on_course_id"
+    t.index ["lesson_status_id"], name: "index_lessons_on_lesson_status_id"
+    t.index ["user_id"], name: "index_lessons_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -93,10 +143,16 @@ ActiveRecord::Schema.define(version: 2019_08_17_203726) do
     t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "courses", "course_levels"
+  add_foreign_key "courses", "course_statuses"
+  add_foreign_key "lessons", "courses"
+  add_foreign_key "lessons", "lesson_statuses"
+  add_foreign_key "lessons", "users"
   add_foreign_key "services", "users"
 end

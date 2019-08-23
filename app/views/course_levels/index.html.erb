@@ -1,0 +1,45 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Course Levels</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_course_level_path, class: 'btn btn-primary' do %>
+    Add New Course Level
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+
+        <th>Name</th>
+
+
+            <th>Code</th>
+            <th>Description</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @course_levels.each do |course_level| %>
+        <%= content_tag :tr, id: dom_id(course_level), class: dom_class(course_level) do %>
+
+            <td><%= link_to course_level.name, course_level %></td>
+
+
+                      <td><%= course_level.code %></td>
+                      <td><%= course_level.description %></td>
+
+
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
