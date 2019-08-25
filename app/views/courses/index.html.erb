@@ -22,6 +22,7 @@
 
 
             <th>Course level</th>
+            <th>Course teacher</th>
             <th>Course status</th>
             <th>Meetingday</th>
             <th>Start time</th>
@@ -40,6 +41,8 @@
 
 
                       <td><%= course.course_level.name %></td>
+                      <!-- falta agregar acá la forma de mostar el profe del curso -->
+                      <td><%= course %></td>
                       <td><%= course.course_status.name %></td>
                       <td><%= course.meetingDay %></td>
                       <td><%= course.start_time %></td>

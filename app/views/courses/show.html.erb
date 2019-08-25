@@ -8,29 +8,64 @@
   <h1>Show course</h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt>Name:</dt>
-  <dd><%= @course.name %></dd>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
 
-  <dt>Course level:</dt>
-  <dd><%= @course.course_level.code %> - <%= @course.course_level.name %></dd>
+      <dl class="dl-horizontal">
+        <dt>Name:</dt>
+        <dd><%= @course.name %></dd>
 
-  <dt>Course status:</dt>
-  <dd><%= @course.course_status.name %></dd>
+        <dt>Course level:</dt>
+        <dd><%= @course.course_level.code %> - <%= @course.course_level.name %></dd>
 
-  <dt>Meetingday:</dt>
-  <dd><%= @course.meetingDay %></dd>
+        <dt>Course status:</dt>
+        <dd><%= @course.course_status.name %></dd>
 
-  <dt>Start time:</dt>
-  <dd><%= @course.start_time %></dd>
+        <dt>Course teacher:</dt>
+        <dd>
+          <% if User.where(role: 2).select(:id).take %>
+          <%= User.find_by(role: 2).attributes.slice('first_name') %>
+          <% end %>
+        </dd>
 
-  <dt>End time:</dt>
-  <dd><%= @course.end_time %></dd>
+        <dt>Course student:</dt>
+        <dd>
+          <% if User.where(role: 3).select(:id).take %>
+          <%= User.find_by(role: 3).attributes.slice('first_name') %>
+          <% end %>
+        </dd>
 
-  <dt>Address:</dt>
-  <dd><%= @course.address %></dd>
+        <dt>Meetingday:</dt>
+        <dd><%= @course.meetingDay %></dd>
 
-  <dt>Info:</dt>
-  <dd><%= @course.info %></dd>
+        <dt>Start time:</dt>
+        <dd><%= @course.start_time %></dd>
 
-</dl>
+        <dt>End time:</dt>
+        <dd><%= @course.end_time %></dd>
+
+        <dt>Address:</dt>
+        <dd><%= @course.address %></dd>
+
+        <dt>Info:</dt>
+        <dd><%= @course.info %></dd>
+
+      </dl>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <p>We should display here the lessons (N° and date) to take attendance, and leave comments for each lesson</p>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <p>We should display here the course sillabus and other resources, maybe adding a file uploader for the teacher</p>
+
+    </div>
+
+  </div>
+</div>
