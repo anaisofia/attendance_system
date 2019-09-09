@@ -1,0 +1,44 @@
+<%= form_with(model: attendance, local: true) do |form| %>
+  <% if attendance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
+
+      <ul>
+      <% attendance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :lesson_id %>
+    <%= form.text_field :lesson_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :lesson_status_id %>
+    <%= form.text_field :lesson_status_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if attendance.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', attendance, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if attendance.persisted? %>
+      <%= link_to "Cancel", attendance, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", attendances_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

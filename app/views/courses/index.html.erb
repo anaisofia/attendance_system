@@ -42,7 +42,7 @@
 
                       <td><%= course.course_level.name %></td>
                       <!-- falta agregar acá la forma de mostar el profe del curso -->
-                      <td><%= course %></td>
+                      <td><%= display_teachers(course.teachers) %></td>
                       <td><%= course.course_status.name %></td>
                       <td><%= course.meetingDay %></td>
                       <td><%= course.start_time %></td>

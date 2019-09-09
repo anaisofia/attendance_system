@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :attendances
   resources :lessons
   resources :courses
   resources :course_statuses

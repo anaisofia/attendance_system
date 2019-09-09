@@ -23,18 +23,10 @@
         <dd><%= @course.course_status.name %></dd>
 
         <dt>Course teacher:</dt>
-        <dd>
-          <% if User.where(role: 2).select(:id).take %>
-          <%= User.find_by(role: 2).attributes.slice('first_name') %>
-          <% end %>
-        </dd>
+        <dd ><%= display_teachers(@course.teachers) %> </dd>
 
         <dt>Course student:</dt>
-        <dd>
-          <% if User.where(role: 3).select(:id).take %>
-          <%= User.find_by(role: 3).attributes.slice('first_name') %>
-          <% end %>
-        </dd>
+        <dd ><%= display_students(@course.students) %> </dd>
 
         <dt>Meetingday:</dt>
         <dd><%= @course.meetingDay %></dd>

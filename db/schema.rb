@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_24_192424) do
+ActiveRecord::Schema.define(version: 2019_09_03_014223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 2019_08_24_192424) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "attendances", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "lesson_id", null: false
+    t.bigint "lesson_status_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_attendances_on_lesson_id"
+    t.index ["lesson_status_id"], name: "index_attendances_on_lesson_status_id"
+    t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
   create_table "course_levels", force: :cascade do |t|
@@ -151,6 +162,9 @@ ActiveRecord::Schema.define(version: 2019_08_24_192424) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "attendances", "lesson_statuses"
+  add_foreign_key "attendances", "lessons"
+  add_foreign_key "attendances", "users"
   add_foreign_key "courses", "course_levels"
   add_foreign_key "courses", "course_statuses"
   add_foreign_key "courses", "users"

@@ -1,0 +1,21 @@
+<div class="page-header">
+  <%= link_to attendances_path, class: 'btn btn-default' do %>
+    All Attendances
+  <% end %>
+  <%= link_to edit_attendance_path(@attendance), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show attendance</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>User:</dt>
+  <dd><%= @attendance.user %></dd>
+
+  <dt>Lesson:</dt>
+  <dd><%= @attendance.lesson %></dd>
+
+  <dt>Lesson status:</dt>
+  <dd><%= @attendance.lesson_status %></dd>
+
+</dl>

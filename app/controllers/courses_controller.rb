@@ -15,19 +15,23 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+    @teachers = User.where(role: 2)
+    @students = User.where(role: 3)
   end
 
   # GET /courses/1/edit
   def edit
+    @teachers = User.where(role: 2)
+    @students = User.where(role: 3)
   end
 
   # POST /courses
   # POST /courses.json
   def create
-    @course = Course.new(course_params)
-
+    @course = Course.new(course_params.except(:teachers, :students))
     respond_to do |format|
       if @course.save
+
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
       else
@@ -40,6 +44,9 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+    @teachers = User.where(role: 2)
+    @students = User.where(role: 3)
+
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -69,6 +76,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :course_level_id, :course_status_id, :meetingDay, :start_time, :end_time, :address, :info, :users_id)
+      params.require(:course).permit(:name, :course_level_id, :course_status_id, :meetingDay, :start_time, :end_time, :address, :info, :user)
     end
 end

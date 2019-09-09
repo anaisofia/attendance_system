@@ -24,6 +24,8 @@ class UserDashboard < Administrate::BaseDashboard
     role: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    teachers: Field::HasMany,
+    students: Field::HasMany,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -32,27 +34,29 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :notifications,
-    :role,
+    # :notifications,
     :id,
+    :first_name,
+    :last_name,
+    :role,
     :email,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :notifications,
-    :services,
+    # :notifications,
+    # :services,
     :id,
     :email,
     :encrypted_password,
-    :reset_password_token,
-    :reset_password_sent_at,
-    :remember_created_at,
+    # :reset_password_token,
+    # :reset_password_sent_at,
+    # :remember_created_at,
     :first_name,
     :last_name,
     :announcements_last_read_at,
-    :admin,
+    # :admin,
     :role,
     :created_at,
     :updated_at,
