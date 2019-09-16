@@ -57,7 +57,7 @@ document.addEventListener("turbolinks:load", () => {
 })
 
 
-//Time picker
+//Time picker for project
 document.addEventListener("turbolinks:load", () => {
   flatpickr("[data-behavior='flatpickr-time']", {
     // altInput: true,
