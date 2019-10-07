@@ -1,16 +1,17 @@
 <div class="page-header">
   <%= link_to courses_path, class: 'btn btn-default' do %>
-    All Courses
+  Go back to all courses
   <% end %>
   <%= link_to edit_course_path(@course), class: 'btn btn-primary' do %>
-    Edit
+  Edit this course
   <% end %>
-  <h1>Show course</h1>
+  <h4 align="center">Course Details</h4>
+  <br>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md">
 
       <dl class="dl-horizontal">
         <dt>Name:</dt>
@@ -31,11 +32,12 @@
         <dt>Meetingday:</dt>
         <dd><%= @course.meetingDay %></dd>
 
+        <!-- time format -->
         <dt>Start time:</dt>
-        <dd><%= @course.start_time %></dd>
+        <dd><%= @course.start_time.strftime("%I:%M %p") %> (or <%= @course.start_time.strftime("%k:%M") %>)</dd>
 
         <dt>End time:</dt>
-        <dd><%= @course.end_time %></dd>
+        <dd><%= @course.end_time.strftime("%I:%M %p") %> (or <%= @course.end_time.strftime("%k:%M") %>)</dd>
 
         <dt>Address:</dt>
         <dd><%= @course.address %></dd>
@@ -47,17 +49,42 @@
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
+
+      <!-- <p>We should display here the lessons (N° and date) to take attendance, and leave comments for each lesson</p> -->
+
+      <dl class="dl-horizontal">
+        <tbody>
+          <p><b>Lessons list:
+            <span> <button type class="btn btn-outline-info btn-sm float-right"><%= link_to "Add new lesson", new_lesson_path %></button> </span></p>
+
+            <% @lessons.each do |lesson| %>
+            <%= content_tag :tr, id: dom_id(lesson), class: dom_class(lesson) do %>
+            <div class="list-group p-1">
+              <ol class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <p class="mb-1">Class N°: <%= lesson.subject %></p>
+                  <small>Date: <%=lesson.date.strftime("%A, %d/%m/%Y") %></small>
+                </div>
+                <h6>Subject: <%=lesson.description %></h6>
+                <small>Class status: <%=lesson.lesson_status.name %></small>
+                <br>
+                <small><%=link_to "See details", lesson %></small>
+              </ol>
+            </div>
+            <% end %>
+            <% end %>
+          </tbody>
+        </dl>
+
+      </div>
+
+      <div class="col-md">
 
         <p>We should display here the lessons (N° and date) to take attendance, and leave comments for each lesson</p>
 
-    </div>
-
-    <div class="col-md-4">
-
-        <p>We should display here the course sillabus and other resources, maybe adding a file uploader for the teacher</p>
+      </div>
 
     </div>
 
   </div>
-</div>

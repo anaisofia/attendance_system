@@ -20,6 +20,20 @@
 
     <div class="collapse navbar-collapse" id="navbarMain">
       <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+        <% if user_signed_in? %>
+          <% if current_user.teacher? or current_user.student? %>
+            <li>
+              <%= link_to "Go to my courses", courses_path, class: "nav-link" %>
+            </li>
+          <% elsif current_user.office? or current_user.admin? %>
+            <li>
+            <%= link_to "Courses", courses_path, class: "nav-link" %>
+            </li>
+            <li>
+              <%= link_to "Users", admin_users_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        <% end %>
       </ul>
 
       <ul class="navbar-nav">
@@ -39,6 +53,9 @@
             <div id="nav-account-dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown">
               <% if current_user.admin? %>
                 <%= link_to "Admin Area", admin_root_path, class: "dropdown-item" %>
+              <% end %>
+              <% if current_user.teacher? or current_user.student? %>
+                <%= link_to "Courses", courses_path, class: "dropdown-item" %>
               <% end %>
               <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
               <div class="dropdown-divider"></div>

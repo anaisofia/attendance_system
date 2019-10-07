@@ -9,9 +9,10 @@ class User < ApplicationRecord
   has_many :services
   has_one_attached :avatar
   has_many :lessons
-  has_many :lesson_status
+  has_many :lesson_statuses
   has_many :courses, :through => :lessons
   has_many :attendances
 
   enum role: [:admin, :office, :teacher, :student]
+  
 end

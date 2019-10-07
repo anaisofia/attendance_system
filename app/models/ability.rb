@@ -5,19 +5,18 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
-    can :read, :all # permissions for every user, even if not logged in
     if user.admin?
       can :manage, :all
     elsif user.office?
-      can [:create, :read, :update], [User, Course, CourseLevel, CourseStatus, Lesson, Status]
-      can [:manage], User
+      # can [:create, :read, :update], [User, Course, CourseLevel, CourseStatus, Lesson, Status]
+      # can [:manage], User
     elsif user.teacher?
-      can :read, [Course, CourseLevel, CourseStatus, Lesson, Status, User]
+      # the following line is not working---
+      can :read, Course, lessons: { user: {id: user.id}}
       can :update, Lesson
     else
       can :read, :all
     end
-
 
     # Define abilities for the passed in user here. For example:
     #

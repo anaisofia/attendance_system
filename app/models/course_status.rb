@@ -1,2 +1,3 @@
 class CourseStatus < ApplicationRecord
+
 end

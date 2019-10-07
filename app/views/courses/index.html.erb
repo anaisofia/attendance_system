@@ -45,8 +45,8 @@
                       <td><%= display_teachers(course.teachers) %></td>
                       <td><%= course.course_status.name %></td>
                       <td><%= course.meetingDay %></td>
-                      <td><%= course.start_time %></td>
-                      <td><%= course.end_time %></td>
+                      <td><%= course.start_time.strftime("%k:%M") %></td>
+                      <td><%= course.end_time.strftime("%k:%M") %></td>
                       <td><%= course.address %></td>
                       <td><%= course.info %></td>
 

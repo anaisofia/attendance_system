@@ -56,7 +56,7 @@ class UserDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     :announcements_last_read_at,
-    # :admin,
+    :admin,
     :role,
     :created_at,
     :updated_at,
@@ -77,7 +77,7 @@ class UserDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     # :announcements_last_read_at,
-    # :admin,
+    :admin,
     :role,
   ].freeze
 
