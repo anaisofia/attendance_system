@@ -4,11 +4,11 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-              if current_user.teacher? or current_user.student?
-                @courses = Course.joins(:lessons).where(lessons: {user: current_user}).order("name ASC")
-              elsif current_user.office? || current_user.admin?
-                @courses = Course.all.order("name ASC")
-              end
+    if current_user.teacher? or current_user.student?
+      @courses = Course.joins(:lessons).where(lessons: {user: current_user}).order("name ASC")
+    elsif current_user.office? || current_user.admin?
+      @courses = Course.all.order("name ASC")
+    end
   end
 
   # GET /courses/1

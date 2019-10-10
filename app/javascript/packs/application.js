@@ -7,13 +7,18 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("jquery")
+require("moment")
+require("fullcalendar/dist/fullcalendar")
+
 // local time allow us to display the time update in the current browser time zone. The time relative to the user
 require("local-time").start()
 
-window.Rails = Rails
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 
-import 'bootstrap'
-import 'data-confirm-modal'
+import 'bootstrap';
 
 $(document).on("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()
