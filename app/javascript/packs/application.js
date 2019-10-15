@@ -12,11 +12,12 @@ require("moment")
 require("fullcalendar/dist/fullcalendar")
 
 // local time allow us to display the time update in the current browser time zone. The time relative to the user
-require("local-time").start()
+// require("local-time").start()
 
 import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;
+
 
 import 'bootstrap';
 

@@ -51,3 +51,51 @@
     </tbody>
   </table>
 </div>
+
+<div id='calendar'></div>
+<script>
+  $('#calendar').fullCalendar({
+    // put your options and callbacks here
+    header: { center: 'month,agendaWeek,listWeek' }, // buttons for switching between views
+
+    views: {
+      month: { // name of view
+        titleFormat: 'YYYY, MM, DD',
+        // other view-specific options here
+      }
+    },
+
+    events: <%= raw @lessons_calendar.to_json %>,
+    <% if current_user.teacher? or current_user.student? %>
+      editable: false
+    <% elsif current_user.office? || current_user.admin? %>
+      editable: true
+    <% end %>,
+    eventDrop: function(event, delta, revertFunc) {
+
+      alert(event.subject + " was dropped on " + event.start.format());
+
+      console.log(event.start.format());
+      $.ajax({
+
+        url: '/lessons/' + event.id,
+        type: 'PATCH',
+        dataType: 'json',
+        data: {lesson: {date: event.start.format()},
+        authenticity_token: "<%= form_authenticity_token %>"
+      }
+      })
+      .done(function() {
+        console.log("success");
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+
+    },
+
+  })
+</script>

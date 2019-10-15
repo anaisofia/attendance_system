@@ -5,6 +5,8 @@ class LessonsController < ApplicationController
   # GET /lessons.json
   def index
     @lessons = Lesson.all
+    @lessons_calendar = @lessons.map{|lesson| {id: lesson.id, title: lesson.subject, date: lesson.date}}
+    # raise @lessons_calendar.to_json.inspect
   end
 
   # GET /lessons/1

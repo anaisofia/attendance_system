@@ -8,5 +8,26 @@
 <script>
   $('#calendar').fullCalendar({
     // put your options and callbacks here
+    header: { center: 'month,agendaWeek,listWeek' }, // buttons for switching between views
+
+    views: {
+      month: { // name of view
+        titleFormat: 'YYYY, MM, DD',
+        // other view-specific options here
+      }
+    },
+
+    events: [
+      {
+        title: "Event 1",
+        start: '2019-10-10T14:30'
+      },
+      {
+        title: "Event 2",
+        start: '2019-10-12'
+      }
+    ]
+
+
   })
 </script>
