@@ -25,7 +25,7 @@ class CoursesController < ApplicationController
       @teachers = User.where(role: 2)
       @students = User.where(role: 3)
     else
-      redirect_to root_path if current_user.teacher?
+      redirect_to root_path if current_user.teacher? || current_user.student?
     end
 
   end
@@ -37,7 +37,7 @@ class CoursesController < ApplicationController
       @teachers = User.where(role: 2)
       @students = User.where(role: 3)
     else
-      redirect_to course_path if current_user.teacher?
+      redirect_to course_path if current_user.teacher? || current_user.student?
       @teachers = User.where(role: 2)
       @students = User.where(role: 3)
     end
@@ -47,6 +47,8 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(course_params.except(:teachers, :students))
+    @teachers = User.where(role: 2)
+    @students = User.where(role: 3)
     respond_to do |format|
       if @course.save
 
@@ -79,6 +81,9 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
+    redirect_to lesson_path if current_user.teacher?
+    @teachers = User.where(role: 2)
+    @students = User.where(role: 3)
     @course.destroy
     respond_to do |format|
       format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }

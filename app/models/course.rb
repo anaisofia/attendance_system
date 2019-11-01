@@ -9,10 +9,10 @@ class Course < ApplicationRecord
   accepts_nested_attributes_for :users
 
   def teachers
-    self.users.where(role: 2).map { |c| "#{c.first_name} #{c.last_name}"  }
+    self.users.where(role: :teacher).map { |c| "#{c.first_name} #{c.last_name}"  }
   end
 
   def students
-    self.users.where(role: 3).map { |c| "#{c.first_name} #{c.last_name}"  }
+    self.users.where(role: :student).map { |c| "#{c.first_name} #{c.last_name}"  }
   end
 end

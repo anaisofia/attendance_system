@@ -1,0 +1,3 @@
+$('.modal-body').html('<%= j render 'form', lesson: @lesson %>');
+$('.modal-title').html('<%= @lesson = Lesson.find(params[:id]).subject %>');
+$('.modal').modal();

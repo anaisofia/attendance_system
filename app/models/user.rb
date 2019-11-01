@@ -14,5 +14,5 @@ class User < ApplicationRecord
   has_many :attendances
 
   enum role: [:admin, :office, :teacher, :student]
-  
+
 end

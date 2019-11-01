@@ -53,6 +53,7 @@
 </div>
 
 <div id='calendar'></div>
+<%= render 'modal' %>
 <script>
   $('#calendar').fullCalendar({
     // put your options and callbacks here
@@ -71,16 +72,57 @@
     <% elsif current_user.office? || current_user.admin? %>
       editable: true
     <% end %>,
+
+    eventClick: function( event, jsEvent, view ) {
+      <% if current_user.teacher? or current_user.student? %>
+      console.log(event);
+      $.ajax({
+        url: '/lessons/' + event.id,
+        type: 'GET',
+        dataType: 'script',
+      })
+      .done(function() {
+        console.log("success");
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+      <% end %>
+    },
+
+    eventClick: function( event, jsEvent, view ) {
+      <% if current_user.office? || current_user.admin? %>
+      console.log(event);
+      $.ajax({
+        url: '/lessons/' + event.id + '/edit/',
+        type: 'GET',
+        dataType: 'script',
+      })
+      .done(function() {
+        console.log("success");
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+      <% end %>
+    },
+
     eventDrop: function(event, delta, revertFunc) {
 
-      alert(event.subject + " was dropped on " + event.start.format());
+      alert(event.title + " was moved to " + event.start.format());
 
       console.log(event.start.format());
       $.ajax({
 
         url: '/lessons/' + event.id,
         type: 'PATCH',
-        dataType: 'json',
+        dataType: 'script',
         data: {lesson: {date: event.start.format()},
         authenticity_token: "<%= form_authenticity_token %>"
       }

@@ -18,8 +18,9 @@ import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;
 
-
 import 'bootstrap';
+import 'bootstrap/js/dist/modal';
+
 
 $(document).on("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()

@@ -28,12 +28,12 @@
 
   <div class="form-group">
     <%= form.label "Teacher" %>
-    <%= form.collection_select :teachers, @teachers, :id, :name, class: 'form-control' %>
+    <%= form.collection_select :teachers, User.where(role: :teacher), :id, :name, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label "Student" %>
-    <%= form.collection_select :students, @students, :id, :name, class: 'form-control' %>
+    <%= form.collection_select :students, User.where(role: :student), :id, :name, class: 'form-control' %>
   </div>
 
   <div class="form-group">

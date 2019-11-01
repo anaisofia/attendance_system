@@ -1,0 +1,6 @@
+if ($(".modal").hasClass('in') == true){
+  $(".modal").modal("hide");
+}
+
+$('#calendar').fullCalendar('refetchEvents');
+$('#calendar').fullCalendar('rerenderEvents');
